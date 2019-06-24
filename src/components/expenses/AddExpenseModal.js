@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
-import uuid from "uuid";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { addExpense } from "../../actions/expenseActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class AddExpenseModal extends Component {
   state = {
@@ -22,20 +24,46 @@ class AddExpenseModal extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  saveExpense = () => {};
-  handleDateChange = date => {
-    console.log(date);
-    this.setState({ expenseDate: date });
-  };
-  render() {
-    const { handleClose, show } = this.props;
-    // console.log(this.state);
+  saveExpense = () => {
     const {
       expenseValue,
       expenseCategory,
       expenseDate,
       expenseComment
     } = this.state;
+    if (
+      expenseValue === "" ||
+      expenseCategory === "" ||
+      expenseDate === "" ||
+      expenseComment === ""
+    ) {
+      console.log(
+        "empty: ",
+        expenseCategory,
+        expenseComment,
+        expenseDate,
+        expenseValue
+      );
+      alert("Please fill all the fields");
+    } else {
+      let newExpense = {
+        expenseValue,
+        expenseCategory,
+        expenseDate,
+        expenseComment
+      };
+      console.log(newExpense);
+      this.props.addExpense(newExpense);
+    }
+  };
+  handleDateChange = date => {
+    // console.log(date);
+    this.setState({ expenseDate: date });
+  };
+  render() {
+    const { handleClose, show, categories } = this.props;
+    // console.log(this.props);
+    const { expenseValue, expenseComment } = this.state;
     return (
       <div>
         <Modal
@@ -43,6 +71,7 @@ class AddExpenseModal extends Component {
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
+          onHide={handleClose}
         >
           <Modal.Header>
             <Modal.Title>Modal heading</Modal.Title>
@@ -77,8 +106,9 @@ class AddExpenseModal extends Component {
                   name="expenseCategory"
                 >
                   <option defaultValue>Select a category</option>
-                  <option>Food</option>
-                  <option>Travel</option>
+                  {categories.map(category => (
+                    <option key={category.id}>{category.category}</option>
+                  ))}
                 </select>
               </div>
               <div className="form-group">
@@ -109,7 +139,7 @@ class AddExpenseModal extends Component {
           <Modal.Footer>
             <input
               type="button"
-              value="Save"
+              value="Add"
               onClick={this.saveExpense}
               className="btn btn-success"
             />
@@ -133,4 +163,11 @@ class AddExpenseModal extends Component {
   }
 }
 
-export default AddExpenseModal;
+AddExpenseModal.propTypes = {
+  addExpense: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { addExpense }
+)(AddExpenseModal);

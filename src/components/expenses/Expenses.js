@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getExpenses } from "../../actions/expenseActions.js";
+import { getExpenses, getCategories } from "../../actions/expenseActions.js";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Expense from "./Expense.js";
@@ -7,6 +7,7 @@ import Expense from "./Expense.js";
 class Expenses extends Component {
   componentDidMount() {
     this.props.getExpenses();
+    // this.props.getCategories();
   }
   render() {
     const { expenses } = this.props;
@@ -39,7 +40,8 @@ class Expenses extends Component {
 
 Expenses.propTypes = {
   expenses: PropTypes.array.isRequired,
-  getExpenses: PropTypes.func.isRequired
+  getExpenses: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -48,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getExpenses }
+  { getExpenses, getCategories }
 )(Expenses);

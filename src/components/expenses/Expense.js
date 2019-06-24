@@ -10,7 +10,7 @@ class Expense extends Component {
       expenseComment
     } = this.props.expense;
     expenseDate = expenseDate.toString();
-    expenseDate = expenseDate.substring(0, 15);
+    expenseDate = expenseDate.substring(0, 10);
     // console.log(expenseDate);
     return (
       <tr>

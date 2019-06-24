@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import AddExpenseModal from "../expenses/AddExpenseModal";
+import { getCategories } from "../../actions/expenseActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
   state = {
-    show: true
+    show: false
   };
   showModal = () => {
     this.setState({ show: true });
@@ -11,8 +14,12 @@ class Navbar extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
-
+  componentDidMount() {
+    this.props.getCategories();
+  }
   render() {
+    // console.log(this.props);
+    const { categories } = this.props;
     return (
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <a className="navbar-brand" href="!#">
@@ -39,6 +46,7 @@ class Navbar extends Component {
               <AddExpenseModal
                 show={this.state.show}
                 handleClose={this.hideModal}
+                categories={categories}
               />
             </li>
           </ul>
@@ -48,4 +56,15 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  categories: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+  categories: state.categories.categories
+});
+
+export default connect(
+  mapStateToProps,
+  { getCategories }
+)(Navbar);
