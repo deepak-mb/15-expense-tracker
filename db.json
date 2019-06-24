@@ -1,0 +1,28 @@
+{
+    "expenses": [
+        {
+            "id": 1,
+            "expenseValue": "32",
+            "expenseCategory": "Food",
+            "expenseDate": "Mon Jun 24 2019 11:35:39 GMT+0530 (India Standard Time)",
+            "expenseComment": "Testing"
+        },
+        {
+            "id": 2,
+            "expenseValue": "32",
+            "expenseCategory": "Travel",
+            "expenseDate": "Tue Jun 24 2019 11:35:39 GMT+0530 (India Standard Time)",
+            "expenseComment": "Went on a trip. Went on a trip. Went on a trip. Went on a trip. "
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "category": "Food"
+        },
+        {
+            "id": 2,
+            "category": "Travel"
+        }
+    ]
+}
