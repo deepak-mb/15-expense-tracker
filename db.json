@@ -1,39 +1,32 @@
 {
   "expenses": [
     {
-      "id": 1,
-      "expenseValue": "32",
-      "expenseCategory": "Food",
-      "expenseDate": "Mon Jun 24 2019 11:35:39 GMT+0530 (India Standard Time)",
-      "expenseComment": "Testing"
-    },
-    {
-      "id": 2,
-      "expenseValue": "32",
-      "expenseCategory": "Travel",
-      "expenseDate": "Tue Jun 24 2019 11:35:39 GMT+0530 (India Standard Time)",
-      "expenseComment": "Went on a trip. Went on a trip. Went on a trip. Went on a trip. "
-    },
-    {
+      "id": "56d718d1-2ca6-490c-9173-e69b25e00593",
       "expenseValue": " 1212",
       "expenseCategory": "Food",
-      "expenseDate": "2019-06-24T08:08:16.231Z",
-      "expenseComment": "test",
-      "id": 3
+      "expenseDate": "2019-06-24T12:24:12.189Z",
+      "expenseComment": "gchc"
     },
     {
-      "expenseValue": " 1000",
+      "id": "208cd43f-6067-4900-830a-1cb5738a48a7",
+      "expenseValue": " 1212",
+      "expenseCategory": "Travel",
+      "expenseDate": "2019-06-24T12:26:02.964Z",
+      "expenseComment": "xc"
+    },
+    {
+      "id": "316aee88-d7a2-44b5-9282-dfeb3c349ce2",
+      "expenseValue": " 1212",
       "expenseCategory": "Food",
-      "expenseDate": "2019-06-24T08:08:16.231Z",
-      "expenseComment": "test",
-      "id": 4
+      "expenseDate": "2019-06-24T12:27:38.559Z",
+      "expenseComment": "ad"
     },
     {
-      "expenseValue": "111",
-      "expenseCategory": "Entertainment",
-      "expenseDate": "2019-06-25T08:09:21.000Z",
-      "expenseComment": "tesdfsdf",
-      "id": 5
+      "id": "483676d5-006b-4275-8b3b-6ddee3db6fd0",
+      "expenseValue": " 1212",
+      "expenseCategory": "Food",
+      "expenseDate": "2019-06-24T12:27:38.559Z",
+      "expenseComment": "ad"
     }
   ],
   "categories": [

@@ -7,7 +7,6 @@ import Expense from "./Expense.js";
 class Expenses extends Component {
   componentDidMount() {
     this.props.getExpenses();
-    // this.props.getCategories();
   }
   render() {
     const { expenses } = this.props;
@@ -15,24 +14,28 @@ class Expenses extends Component {
     return (
       <div>
         <p className="display-4 text-danger">Expenses List</p>
-        <div className="table-responsive">
-          <table className="table table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Category</th>
-                <th scope="col">Date</th>
-                <th scope="col">Value</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              {expenses.map(expense => (
-                <Expense key={expense.id} expense={expense} />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {expenses.length === 0 ? (
+          <p>Yaaaaay! You have no expenses.</p>
+        ) : (
+          <div className="table-responsive">
+            <table className="table table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">Category</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Comment</th>
+                  <th scope="col">Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                {expenses.map(expense => (
+                  <Expense key={expense.id} expense={expense} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     );
   }

@@ -5,9 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addExpense } from "../../actions/expenseActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import uuid from "uuid";
 
 class AddExpenseModal extends Component {
   state = {
+    id: "",
     expenseValue: " ",
     expenseCategory: "",
     expenseDate: new Date(),
@@ -15,6 +17,7 @@ class AddExpenseModal extends Component {
   };
   clearForm = () => {
     this.setState({
+      id: "",
       expenseValue: " ",
       expenseCategory: "",
       expenseDate: "",
@@ -26,6 +29,7 @@ class AddExpenseModal extends Component {
   };
   saveExpense = () => {
     const {
+      id,
       expenseValue,
       expenseCategory,
       expenseDate,
@@ -47,13 +51,15 @@ class AddExpenseModal extends Component {
       alert("Please fill all the fields");
     } else {
       let newExpense = {
+        id: uuid(),
         expenseValue,
         expenseCategory,
         expenseDate,
         expenseComment
       };
-      console.log(newExpense);
+      //   console.log(newExpense);
       this.props.addExpense(newExpense);
+      this.clearForm();
     }
   };
   handleDateChange = date => {
@@ -157,7 +163,6 @@ class AddExpenseModal extends Component {
             />
           </Modal.Footer>
         </Modal>
-        {/* <p>test</p> */}
       </div>
     );
   }

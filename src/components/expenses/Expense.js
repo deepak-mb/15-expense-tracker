@@ -1,9 +1,18 @@
 import React, { Component } from "react";
+import { deleteExpense } from "../../actions/expenseActions.js";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Expense extends Component {
+  deleteExpense = id => {
+    // console.log(id);
+    this.props.deleteExpense(id);
+  };
   render() {
     // console.log(this.props.expense);
     let {
+      id,
       expenseValue,
       expenseCategory,
       expenseDate,
@@ -20,11 +29,17 @@ class Expense extends Component {
         <td style={{ maxWidth: "200px" }}>{expenseComment}</td>
         <td style={{ padding: " 5px 0px" }}>
           <div>
+            <Link to={`/expense/edit/${id}`}>
+              <i
+                className="fa fa-pencil btn btn-primary mx-1"
+                aria-hidden="true"
+              />
+            </Link>
             <i
-              className="fa fa-pencil btn btn-primary mx-1"
+              className="fa fa-trash btn btn-danger mx-1"
               aria-hidden="true"
+              onClick={this.deleteExpense.bind(this, id)}
             />
-            <i className="fa fa-trash btn btn-danger mx-1" aria-hidden="true" />
           </div>
         </td>
       </tr>
@@ -32,4 +47,11 @@ class Expense extends Component {
   }
 }
 
-export default Expense;
+Expense.propTypes = {
+  deleteExpense: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { deleteExpense }
+)(Expense);

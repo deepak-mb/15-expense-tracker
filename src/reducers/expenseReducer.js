@@ -1,7 +1,13 @@
-import { GET_EXPENSES, ADD_EXPENSE } from "../actions/types.js";
+import {
+  GET_EXPENSES,
+  ADD_EXPENSE,
+  DELETE_EXPENSE,
+  GET_EXPENSE
+} from "../actions/types.js";
 
 const initialState = {
-  expenses: []
+  expenses: [],
+  expense: []
 };
 
 export default function(state = initialState, action) {
@@ -12,11 +18,26 @@ export default function(state = initialState, action) {
         expenses: action.payload
       };
 
+    case GET_EXPENSE:
+      //   console.log(action.payload);
+      return {
+        expense: action.payload
+      };
+
     case ADD_EXPENSE:
       //   console.log(action.payload);
       return {
         ...state,
         expenses: [action.payload, ...state.expenses]
+      };
+
+    case DELETE_EXPENSE:
+      //   console.log(action.payload);
+      return {
+        ...state,
+        expenses: state.expenses.filter(
+          expense => expense.id !== action.payload
+        )
       };
 
     default:
