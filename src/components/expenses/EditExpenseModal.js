@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import { getCategories } from "../../actions/expenseActions.js";
+import { getCategories, editExpense } from "../../actions/expenseActions.js";
 
 class EditExpenseModal extends Component {
   state = {
@@ -14,15 +14,7 @@ class EditExpenseModal extends Component {
     expenseDate: new Date(),
     expenseComment: ""
   };
-  clearForm = () => {
-    this.setState({
-      id: "",
-      expenseValue: " ",
-      expenseCategory: "",
-      expenseDate: "",
-      expenseComment: ""
-    });
-  };
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -30,10 +22,30 @@ class EditExpenseModal extends Component {
     // console.log(date);
     this.setState({ expenseDate: date });
   };
+  editExpense = () => {
+    const {
+      id,
+      expenseValue,
+      expenseCategory,
+      expenseDate,
+      expenseComment
+    } = this.state;
+    let expense = {
+      id,
+      expenseValue,
+      expenseCategory,
+      expenseDate,
+      expenseComment
+    };
+    this.props.editExpense(expense);
+    this.props.history.push("/");
+  };
   componentDidMount() {
     let id = this.props.match.params.id;
+    // console.log(id);
     this.props.getCategories();
     this.props.getExpense(id);
+    console.clear();
   }
   componentWillReceiveProps(nextProps) {
     // console.log(nextProps.expense);
@@ -51,6 +63,7 @@ class EditExpenseModal extends Component {
       expenseDate,
       expenseComment
     });
+    // console.clear();
   }
   render() {
     const {
@@ -61,9 +74,9 @@ class EditExpenseModal extends Component {
       expenseComment
     } = this.state;
     const { categories } = this.props;
+    // console.log(id, expenseValue, expenseCategory, expenseDate, expenseComment);
     return (
-      //   <p>test</p>
-      <div>
+      <div className="my-3">
         <form>
           <div className="form-group">
             <div className="input-group mb-3">
@@ -99,18 +112,6 @@ class EditExpenseModal extends Component {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="expenseDate" className="d-block">
-              Date
-            </label>
-            {/* <DatePicker
-              id="expenseDate"
-              selected={this.state.expenseDate}
-              onChange={this.handleDateChange}
-              dateFormat="dd/MM/yyyy"
-              className="datepicker-class"
-            /> */}
-          </div>
-          <div className="form-group">
             <label htmlFor="expenseComment">Comment</label>
             <textarea
               className="form-control"
@@ -123,8 +124,8 @@ class EditExpenseModal extends Component {
           </div>
           <input
             type="button"
-            value="Add"
-            onClick={this.saveExpense}
+            value="Edit"
+            onClick={this.editExpense}
             className="btn btn-success"
           />
           <input
@@ -150,5 +151,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getExpense, getCategories }
+  { getExpense, getCategories, editExpense }
 )(EditExpenseModal);

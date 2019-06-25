@@ -1,32 +1,18 @@
 {
   "expenses": [
     {
-      "id": "56d718d1-2ca6-490c-9173-e69b25e00593",
-      "expenseValue": " 1212",
+      "id": "25d2605a-000f-449c-865a-8896775fdee5",
+      "expenseValue": "111",
       "expenseCategory": "Food",
-      "expenseDate": "2019-06-24T12:24:12.189Z",
-      "expenseComment": "gchc"
+      "expenseDate": "2019-06-25T05:17:00.263Z",
+      "expenseComment": "bla bla bla"
     },
     {
-      "id": "208cd43f-6067-4900-830a-1cb5738a48a7",
-      "expenseValue": " 1212",
+      "id": "0c45ed06-d26e-4d5b-83c6-8e2745cb3da4",
+      "expenseValue": " 221",
       "expenseCategory": "Travel",
-      "expenseDate": "2019-06-24T12:26:02.964Z",
-      "expenseComment": "xc"
-    },
-    {
-      "id": "316aee88-d7a2-44b5-9282-dfeb3c349ce2",
-      "expenseValue": " 1212",
-      "expenseCategory": "Food",
-      "expenseDate": "2019-06-24T12:27:38.559Z",
-      "expenseComment": "ad"
-    },
-    {
-      "id": "483676d5-006b-4275-8b3b-6ddee3db6fd0",
-      "expenseValue": " 1212",
-      "expenseCategory": "Food",
-      "expenseDate": "2019-06-24T12:27:38.559Z",
-      "expenseComment": "ad"
+      "expenseDate": "2019-06-26T18:30:00.000Z",
+      "expenseComment": "test 2"
     }
   ],
   "categories": [

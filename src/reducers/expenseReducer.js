@@ -2,7 +2,8 @@ import {
   GET_EXPENSES,
   ADD_EXPENSE,
   DELETE_EXPENSE,
-  GET_EXPENSE
+  GET_EXPENSE,
+  EDIT_EXPENSE
 } from "../actions/types.js";
 
 const initialState = {
@@ -40,6 +41,15 @@ export default function(state = initialState, action) {
         )
       };
 
+    case EDIT_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses.map(expense =>
+          expense.id === action.payload.id
+            ? (expense = action.payload)
+            : expense
+        )
+      };
     default:
       return state;
   }

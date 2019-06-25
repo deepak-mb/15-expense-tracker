@@ -3,7 +3,8 @@ import {
   GET_CATEGORIES,
   ADD_EXPENSE,
   DELETE_EXPENSE,
-  GET_EXPENSE
+  GET_EXPENSE,
+  EDIT_EXPENSE
 } from "./types.js";
 import axios from "axios";
 
@@ -55,4 +56,16 @@ export const deleteExpense = id => async dispatch => {
       payload: id
     });
   });
+};
+
+export const editExpense = expense => async dispatch => {
+  await axios
+    .put(`http://localhost:3000/expenses/${expense.id}`, expense)
+    .then(res => {
+      // console.log(res);
+      dispatch({
+        type: EDIT_EXPENSE,
+        payload: res.data
+      });
+    });
 };
